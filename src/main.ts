@@ -31,7 +31,8 @@ const tileSize = gridCanvas.width / numTiles;
 //defining the size of the select grid
 const numSelectables = imageUrls.length;
 const selectHeight = selectCanvas.height / numSelectables;
-let chosen = -1;
+const dummy = -1
+let chosen = dummy;
 
 
 //creating the tilemap nested array
@@ -92,7 +93,8 @@ function drawSelectCanvas()
 {
     for (let i = 0; i < numSelectables; i++) {
         const selectableImage = new Image();
-        if(i == chosen) selectableImage.src = imageUrls[8];
+        const nullImg = 8;
+        if(i == chosen) selectableImage.src = imageUrls[nullImg];
         else selectableImage.src = imageUrls[i];
         drawTexture(0, i, selectCtx, selectableImage, selectCanvas.width, selectHeight, 64);
     }

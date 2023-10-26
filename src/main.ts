@@ -18,7 +18,8 @@ const imageUrls = [
     "/tile5.png",
     "/tile6.png",
     "/tile7.png",
-    "/tile8.png"
+    "/tile8.png",
+    "/tile9.png"
 ];
 
 
@@ -30,7 +31,7 @@ const tileSize = gridCanvas.width / numTiles;
 //defining the size of the select grid
 const numSelectables = imageUrls.length;
 const selectHeight = selectCanvas.height / numSelectables;
-
+let chosen = -1;
 
 
 //creating the tilemap nested array
@@ -91,7 +92,8 @@ function drawSelectCanvas()
 {
     for (let i = 0; i < numSelectables; i++) {
         const selectableImage = new Image();
-        selectableImage.src = imageUrls[i];
+        if(i == chosen) selectableImage.src = imageUrls[8];
+        else selectableImage.src = imageUrls[i];
         drawTexture(0, i, selectCtx, selectableImage, selectCanvas.width, selectHeight, 64);
     }
 }
@@ -99,4 +101,6 @@ function drawSelectCanvas()
 selectCanvas.addEventListener("click", (e) => {
     const coordY = Math.trunc(e.offsetY / selectHeight);
     currentTile = imageUrls[coordY];
+    chosen = coordY;
+    drawSelectCanvas();
 })
